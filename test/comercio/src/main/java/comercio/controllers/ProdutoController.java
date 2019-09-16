@@ -1,7 +1,6 @@
 package comercio.controllers;
 
-import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +37,11 @@ public class ProdutoController {
 		return new ResponseEntity<Produto>(produtoService.productById(id).get(), HttpStatus.OK);
 	}
 	
+	
 	@GetMapping("/produtos")
-	public ResponseEntity<Collection<Produto>> getAllProducts
+	public ResponseEntity<List<Produto>> getAllProducts() {
+		return new ResponseEntity<List<Produto>>(produtoService.listAllProducts(), HttpStatus.OK);
+	}
 
 }
 
