@@ -1,31 +1,41 @@
-package disciplinas.entities;
+package subjects.entities;
+
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Disciplina {
+public class Subjects {
 
 	@Id
 	@GeneratedValue
 	private long id;
 	private String nome;
 	private double nota;
-	private String comentarios;
+	private List<String> comentarios;
 	private int likes;
 	
-	public Disciplina() {
+	public Subjects() {
 		super();
 	}
 	
-	public Disciplina(long id, String nome, double nota, String comentarios, int likes) {
+	public Subjects(long id, String nome, double nota, List<String> comentarios, int likes) {
 		this.id = id;
 		this.nome = nome;
 		this.nota = nota;
 		this.comentarios = comentarios;
 		this.likes = likes;
 	}
+	
+//	----------------------------
+	
+	public void postComment(String comment) {
+		comentarios.add(comment);
+	}
+	
+//	----------------------------
 
 	public String getNome() {
 		return nome;
@@ -43,12 +53,8 @@ public class Disciplina {
 		this.nota = nota;
 	}
 
-	public String getComentarios() {
+	public List<String> getComentarios() {
 		return comentarios;
-	}
-
-	public void setComentarios(String comentarios) {
-		this.comentarios = comentarios;
 	}
 
 	public int getLikes() {
@@ -63,5 +69,8 @@ public class Disciplina {
 		return id;
 	}
 	
+	public void likesSubject() {
+		this.likes++;
+	}
 	
 }

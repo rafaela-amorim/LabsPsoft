@@ -1,13 +1,13 @@
-package disciplinas;
+package subjects;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DisciplinasApplication {
+public class SubjectsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DisciplinasApplication.class, args);
+		SpringApplication.run(SubjectsApplication.class, args);
 	}
 
 }

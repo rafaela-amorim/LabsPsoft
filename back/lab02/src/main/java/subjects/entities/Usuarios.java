@@ -1,4 +1,4 @@
-package disciplinas.entities;
+package subjects.entities;
 
 import javax.persistence.Id;
 
