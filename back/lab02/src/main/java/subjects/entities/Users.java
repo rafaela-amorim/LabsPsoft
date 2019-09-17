@@ -2,23 +2,27 @@ package subjects.entities;
 
 import javax.persistence.Id;
 
-public class Usuarios {
+public class Users {
 
 	@Id
 	private String email;
 	private String nome;
 	private String senha;
 	
-	public Usuarios() {
+	public Users() {
 		super();
 	}
 	
-	public Usuarios(String email, String nome, String senha) {
+	public Users(String email, String nome, String senha) {
 		this.email = email;
 		this.nome = nome;
 		this.senha = senha;
 	}
 
+	public boolean verifyPasswd(String pass) {
+		return pass.equals(senha);
+	}
+	
 	public String getEmail() {
 		return email;
 	}
