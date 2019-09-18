@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import comparators.GradesComparator;
 import comparators.LikesComparator;
 import subjects.DAOs.SubjectsRepository;
-import subjects.entities.Comments;
 import subjects.entities.Subjects;
 
 @Service
@@ -45,7 +44,7 @@ public class SubjectsService {
 		return disciplinasDAO.findById(id).get();
 	}
 	
-	public Subjects postComment(Long id, Comments comment) {
+	public Subjects postComment(Long id, String comment) {
 		disciplinasDAO.findById(id).get().postComment(comment);
 		return disciplinasDAO.findById(id).get();
 	}
