@@ -20,9 +20,11 @@ public class Disciplina {
 	
 	public Disciplina() {
 		super();
+		this.comments = new ArrayList<>();
 	}
 	
 	public Disciplina(long id, String nome, double nota, ArrayList<String> comments,int likes) {
+		super();
 		this.id = id;
 		this.nome = nome;
 		this.nota = nota;
@@ -77,6 +79,10 @@ public class Disciplina {
 
 	public long getId() {
 		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 }

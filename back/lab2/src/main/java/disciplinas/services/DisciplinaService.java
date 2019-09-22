@@ -1,9 +1,16 @@
 package disciplinas.services;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import comparators.GradesComparator;
 import comparators.LikesComparator;
@@ -20,6 +27,25 @@ public class DisciplinaService {
     	this.disciplinasDAO = disciplinasDAO;
     }
 
+    //------------------------------------
+    	
+    @PostConstruct
+    public void initDisciplinas() {
+    	if (disciplinasDAO.count() == 0) {
+    		ObjectMapper mapper = new ObjectMapper();
+        	TypeReference<List<Disciplina>> typeReference = new TypeReference<List<Disciplina>>() {};
+        	InputStream inputStream = ObjectMapper.class.getResourceAsStream("/json/disciplinas.json");
+        	
+        	try {
+        		List<Disciplina> disciplinas = mapper.readValue(inputStream, typeReference);
+        		disciplinasDAO.saveAll(disciplinas);
+        		System.out.println("Alunos salvos no BD!!");
+        	} catch (IOException e) {
+        		System.out.println("Não foi possivel salvar as disciplinas: " + e.getMessage());
+        	}
+    	}
+    }
+    
     //------------------------------------
 
     // metodo para teste
