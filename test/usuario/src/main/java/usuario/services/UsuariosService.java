@@ -1,5 +1,7 @@
 package usuario.services;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import usuario.entities.Usuario;
@@ -21,8 +23,12 @@ public class UsuariosService {
 		return usuarioRepository.save(user);
 	}
 	
-	public Usuario getUser(String email) {
-		return usuarioRepository.findById(email).get();
+	public Optional<Usuario> getUser(String email) {
+		return usuarioRepository.findById(email);
+	}
+	
+	public boolean idExists(String email) {
+		return usuarioRepository.findById(email).isPresent();
 	}
 	
 }
