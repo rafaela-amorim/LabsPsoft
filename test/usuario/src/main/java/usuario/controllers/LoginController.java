@@ -27,7 +27,7 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public ResponseEntity<LoginResponse> authenticate(@RequestBody Usuario usuario) throws ServletException {
-		if (jwtService.verificaSenha(usuario, usuarioService.getUser(usuario.getEmail()).get() ) ) {
+		if (!jwtService.verificaSenha(usuario, usuarioService.getUser(usuario.getEmail()).get() ) ) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		return new ResponseEntity<LoginResponse>(jwtService.authenticate(usuario), HttpStatus.OK);

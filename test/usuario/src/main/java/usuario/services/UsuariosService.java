@@ -29,6 +29,12 @@ public class UsuariosService {
 	
 	public boolean idExists(String email) {
 		return usuarioRepository.findById(email).isPresent();
+	}	
+	
+	public Usuario removeUser(String email) {
+		Usuario user = usuarioRepository.findById(email).get();
+		usuarioRepository.deleteById(email);
+		return user;
 	}
 	
 }

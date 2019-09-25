@@ -40,7 +40,7 @@ public class TokenFilter extends GenericFilterBean {
 		try {
 			Jwts.parser().setSigningKey("login do batman").parseClaimsJws(token).getBody();
 		} catch (SignatureException | ExpiredJwtException | MalformedJwtException | PrematureJwtException | UnsupportedJwtException | IllegalArgumentException e) {
-			
+			System.out.println("entrou no catch!!");
 			//aqui optamos por tratar todas as exceções que podem ser lançadas da mesma forma e simplesmente
 			//repassar a mensagem de erro
 			//se quiser enviar mensagens em portugues mais personalizadas teria que capturar exceção
