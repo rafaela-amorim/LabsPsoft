@@ -29,4 +29,21 @@ public class UsersService {
 	public boolean userIsPresent(String email) {
 		return usersDAO.findById(email).isPresent();
 	}
+	
+	public Users getUser(String email) {
+		return usersDAO.findById(email).get();
+	}
+	
+	public Users removeUser(String email) {
+		Users u = getUser(email);
+		usersDAO.deleteById(email);
+		return u;
+	}
+	
+	public boolean userHasPermission(String emailBody, String subjectEmail) {
+		Users u = getUser(subjectEmail);
+		
+		return userIsPresent(subjectEmail) && u.getEmail().equals(emailBody);
+	}
+
 }
