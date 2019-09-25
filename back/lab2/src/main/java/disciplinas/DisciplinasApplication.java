@@ -16,7 +16,7 @@ public class DisciplinasApplication {
 		filterRB.setFilter(new TokenFilter());
 		
 		// aqui vao as rotas que precisam de token, para passarem pelo filter
-		filterRB.addUrlPatterns("/api/produtos", "/auth/usuarios");
+		filterRB.addUrlPatterns("/auth/usuarios", "/disciplinas/*");
 		return filterRB;
 	}
 	

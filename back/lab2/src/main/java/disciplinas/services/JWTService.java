@@ -58,6 +58,10 @@ public class JWTService {
 		// 1 * 60 * 1000 é o tempo de duração do token (1 * 60 segundos)
 	}
 	
+	public String getEmailByHeader(String authorizationHeader) throws ServletException {
+		return getSujeitoDoToken(authorizationHeader);
+	}
+	
 //	----------------------------
 
 	// retorna o email (id) do usuario

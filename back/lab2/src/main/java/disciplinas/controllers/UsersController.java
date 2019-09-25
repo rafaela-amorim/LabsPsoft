@@ -33,6 +33,7 @@ public class UsersController {
 		return new ResponseEntity<Users>(usersService.addUser(user), HttpStatus.CREATED);
 	}
 	
+	// somente para testes
 	@GetMapping("/usuarios/{email}")
 	public ResponseEntity<Users> getUser(@PathVariable String email) {
 		if (!usersService.userIsPresent(email)) {
@@ -42,26 +43,20 @@ public class UsersController {
 		return new ResponseEntity<Users>(usersService.getUser(email), HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/auth/usuarios/{email}")
-	public ResponseEntity<Users> removeUser(@PathVariable String email, @RequestHeader("Authorization") String header) {
-		// usuario nao existe
-		if (!usersService.userIsPresent(email)) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		
-		// usuario existe && tem permissão
+	@DeleteMapping("/auth/usuarios")
+	public ResponseEntity<Users> removeUser(@RequestHeader("Authorization") String header) {
 		try {
+			String email = jwtService.getEmailByHeader(header);
+			
 			if (jwtService.usuarioTemPermissao(header, email)) {
 				return new ResponseEntity<Users>(usersService.removeUser(email), HttpStatus.OK);
-			} 			
+			} 
+			
 		} catch (ServletException e) {
-			// usuarios esta com token invalido ou vencido
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
 		
-		// usuario NAO tem permissao
 		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-
 	}
 	
 }
