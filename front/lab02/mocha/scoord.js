@@ -53,7 +53,7 @@ exports.turma = function turma(disciplina, periodo)  {
         }
     };
 
-    turma.desmatricula = function (estudante) {
+    turma.desmatricula = function (estudante) { // usar indexof
         let c = 0;
         turma.alunos.forEach(e => {
             if (e === estudante) {
@@ -94,7 +94,14 @@ exports.professor = function professor(matricula, nome, email, cpf, url_foto) {
     }
 
     professor.turmas(semestre) {    // semestre sendo 19.2, 17.1, etc...
-
+        
     }
     
+    return professor;
+}
+
+exports.estudante = function estudante() {
+    let estudante = Object.create(Object.prototype);
+
+    return estudante;
 }

@@ -51,6 +51,7 @@ describe('factory Turma', function() {
     let aa;
 
     before(async () => {
+        aa = ('aa', 'Alg Avançados', 4, []);
         t0 = turma(aa, 2);
     });
 
@@ -73,6 +74,10 @@ describe('factory Turma', function() {
 
         t0.set_status("concluída");
         assert.equal(t0.get_status(), "concluída");
+    });
+
+    it('verifica a disciplina vinculada à turma', function() {
+        assert.equal(t0.get_turma(), )
     });
 
     // it('verifica se está matriculando um estudante')
