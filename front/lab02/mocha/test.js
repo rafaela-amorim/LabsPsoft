@@ -1,5 +1,10 @@
+// para executar o mocha faz:
+// ./node_modules/mocha/bin/mocha
+
 let assert = require('assert');
+
 let disciplina = require('./scoord').disciplina;
+let turma = require('./scoord').turma;
 
 describe('factory Disciplina', function() {
   let d0;
@@ -37,5 +42,39 @@ describe('factory Disciplina', function() {
         }, TypeError);
         assert.equal('prog1', d0.id());
     });
+
+});
+
+
+describe('factory Turma', function() {
+    let t0;
+    let aa;
+
+    before(async () => {
+        t0 = turma(aa, 2);
+    });
+
+    /*
+    it('deve definir um professor para a turma', function() {
+
+    });*/
+
+    it('verifica se set_status esta funcionando', function() {
+        assert.equal(t0.get_status(), "planejada");
+        
+        t0.set_status("ativa");
+        assert.equal(t0.get_status(), "ativa");
+        
+        t0.set_status("all >>>> javascript");
+        assert.equal(t0.get_status(), "ativa");
+
+        t0.set_status("concluida");
+        assert.equal(t0.get_status(), "ativa");
+
+        t0.set_status("concluída");
+        assert.equal(t0.get_status(), "concluída");
+    });
+
+    // it('verifica se está matriculando um estudante')
 
 });
